@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+namespace:名称空间-->
+<mapper namespace="com.itheima.mapper.BrandMapper">
+    <!--Statement-->
+    <!--
+          id : 唯一标识
+          type: 映射类型,支持别名
+    -->
+    <resultMap id="brandResultMap" type="brand">
+        <!--
+            id: 完成主键字段的映射
+                column : 表的别名
+                property : 实体名
+            result 完成一般字段的映射
+                column : 表的别名
+                property : 实体名
+        -->
+        <result column="brand_name" property="brandName"/>
+        <result column="company_name" property="companyName"/>
+    </resultMap>
+    <!--sql片段-->
+    <!--sql id="brand_column">-->
+    <!--    select id, brand_name brandName, company_name companyName, orderby, description, status-->
+    <!--</sql>-->
+
+    <!--查询所有-->
+    <select id="selectAll" resultMap="brandResultMap">
+        select *
+        from tb_brand;
+    </select>
+    <!--    <select id="selectAll" resultType="Brand">-->
+    <!--        <include refid="brand_column"></include>-->
+    <!--        from tb_brand;-->
+    <!--    </select>-->
+
+    <!--查询某id对应的商品-->
+    <!--
+        占位符
+        1 #{} : 会将其替换为 ? 防止sql注入
+        2 ${} : 拼SQL语句 SQL注入
+            表明或者列名在不固定的时候使用
+    -->
+    <select id="selectById" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where id = #{id};
+    </select>
+
+
+</mapper>

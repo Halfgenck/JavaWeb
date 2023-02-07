@@ -6,7 +6,16 @@
 <!--
 namespace:名称空间-->
 <mapper namespace="com.itheima.mapper.UserMapper">
-    <select id="selectAll" resultType="User">
-        select * from mybatis.tb_user;
+    <!--Statement-->
+    <select id="selectAll" resultType="user">
+        select *
+        from mybatis.tb_user;
     </select>
+    <select id="selectById" resultType="user">
+        select *
+        from mybatis.tb_brand
+        where id = #{id};
+    </select>
+
+
 </mapper>
