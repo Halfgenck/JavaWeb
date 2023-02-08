@@ -50,6 +50,71 @@ namespace:名称空间-->
         from tb_brand
         where id = #{id};
     </select>
+    <!--    <select id="selectByCondition" resultMap="brandResultMap">-->
+    <!--        select *-->
+    <!--        from tb_brand-->
+    <!--        where-->
+    <!--            status=#{status}-->
+    <!--        and company_name like #{companyName}-->
+    <!--        and brand_name like #{brandName}-->
+    <!--    </select>-->
+    <!--
+        动态查询
+            * if 条件查询
+                   * test :逻辑表达式
+            * 逻辑恒等式
+    -->
+    <!--    <select id="selectByCondition" resultMap="brandResultMap">-->
+    <!--        select *-->
+    <!--        from tb_brand-->
+    <!--        where 1=1-->
+    <!--        <if test="status != null">-->
+    <!--            and status = #{status}-->
+    <!--        </if>-->
+    <!--        <if test="companyName != null and companyName != ''">-->
+    <!--            and company_name like #{companyName}-->
+    <!--        </if>-->
+    <!--        <if test="brandName != null and brandName != ''">-->
+    <!--            and brand_name like #{brandName}-->
+    <!--        </if>-->
+    <!--    </select>-->
+    <select id="selectByCondition" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        # where 1=1
+        # where标签替换
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="companyName != null and companyName != ''">
+                and company_name like #{companyName}
+            </if>
+            <if test="brandName != null and brandName != ''">
+                and brand_name like #{brandName}
+            </if>
+        </where>
 
+    </select>
+
+    <select id="selectByConditionSingle" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        <where>
+            <choose>
+                <when test="status != null">
+                    status = #{status}
+                </when>
+                <when test="companyName != null and companyName != ''">
+                    company_name like #{companyName}
+                </when>
+                <when test="brandName != null and brandName != ''">
+                    brand_name like #{brandName}
+                </when>
+
+            </choose>
+        </where>
+
+    </select>
 
 </mapper>
