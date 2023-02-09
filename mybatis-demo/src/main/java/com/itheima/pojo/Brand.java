@@ -1,11 +1,20 @@
 package com.itheima.pojo;
 
 public class Brand {
+    private Integer id;
     private String brandName;
     private String companyName;
     private Integer orderby;
     private String description;
     private Integer status;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getBrandName() {
         return brandName;

@@ -11,11 +11,11 @@ namespace:名称空间-->
         select *
         from mybatis.tb_user;
     </select>
-    <select id="selectById" resultType="user">
-        select *
-        from mybatis.tb_brand
-        where id = #{id};
-    </select>
+<!--    <select id="selectById" resultType="user">-->
+<!--        select *-->
+<!--        from mybatis.tb_brand-->
+<!--        where id = #{id};-->
+<!--    </select>-->
 
 
 </mapper>
